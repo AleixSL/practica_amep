@@ -19,15 +19,38 @@ public class Vendible {
     // Atributs
     private String descripcio;
     private String codi;
+    private Indret preponderant;
+    private final String type;
     
     //Repositoris
     Map <String, Etiqueta> mpEtiquetes;
     
-    Vendible (String descripcio){
+    public Vendible (String descripcio, String type){
         this.descripcio = descripcio;
+        this.type = type;
         this.codi = nouCodiVendible();
         this.mpEtiquetes = new HashMap <>(); // create
     }
+    
+    public <Foto extends Vendible> Foto getFoto() {
+        return (Foto) this;
+    }
+    
+    public Indret obtenirPreponderant() {
+        return preponderant;
+    }
+
+    public String getType() {
+        return type;
+    }
+    
+    
+
+    public void setPreponderant(Indret preponderant) {
+        this.preponderant = preponderant;
+    }
+    
+    
     
     private String nouCodiVendible (){
         UUID uuid = UUID.randomUUID();
@@ -42,14 +65,5 @@ public class Vendible {
     public String descripcio() {
         return this.descripcio;
     }
-    
-    
-    
-    //Cas d'us 1: novesFotos
-    public void novaEtiqueta (Etiqueta et){
-        this.mpEtiquetes.put(et.titol(), et);
-        et.publicaVendible(this);
-    }
-    
     
 }

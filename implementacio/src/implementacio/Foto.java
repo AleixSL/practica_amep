@@ -15,15 +15,36 @@ public class Foto extends Vendible {
     // Propietats atributives
     private final int any;
     private int puntuacio;
-    Indret preponderant;
     
     
     public Foto (int any, String descripcio, Indret in){
-        super(descripcio);
+        super(descripcio, "foto");
         this.any = any;
         this.puntuacio = 0;
-        this.preponderant = in;
-        preponderant.afegeixFoto(this);
+        this.setPreponderant(in);
+        in.publicaVendible(this);
+    }
+    
+    //Cas d'us 1: novesFotos
+    public void novaEtiqueta (Etiqueta et){
+        this.mpEtiquetes.put(et.titol(), et);
+        et.publicaFoto(this);
+    } 
+    
+    // Cas d'us 2: nouAlbum
+    
+    public void etiquetacioAlbum(Album a){
+        for (String name: this.mpEtiquetes.keySet()) {
+            
+            Etiqueta et = this.mpEtiquetes.get(name);
+            
+            et.etiquetacioAlbum(a);
+            
+            if (!et.mpVendibles.containsKey(a.codi())){ // addx
+                et.mpVendibles.put(a.codi(), a);
+            }
+            
+        }
     }
     
 }

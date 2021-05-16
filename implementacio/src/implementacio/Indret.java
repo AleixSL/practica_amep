@@ -40,13 +40,16 @@ public class Indret {
         return this.nom;
     }
     
+    //Cas d'us 1 i 2: novesFotos i nouAlbum
     
-    
-    //Cas d'us 1: novesFotos
-    public void afegeixFoto (Foto f){
-        this.mpVendibles.put(f.codi(), f); // add
+    public void publicaVendible(Album a) {
+        if (!this.mpVendibles.containsKey(a.codi()))
+            this.mpVendibles.put(a.codi(), a);
     }
     
+    public void publicaVendible(Foto f) {
+        this.mpVendibles.put(f.codi(), f);
+    }
     
     
 }

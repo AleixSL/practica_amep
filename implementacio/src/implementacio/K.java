@@ -17,6 +17,7 @@ public class K {
     // Atributs
     Indret indretActiu;
     Foto fotoActiva;
+    Album albumActiu;
     
     // Repositoris
     Map <String, Vendible> mpVendibles; //Cataleg
@@ -110,5 +111,25 @@ public class K {
         this.fotoActiva.novaEtiqueta(et);
         
     }
+    
+    
+    // Cas d'us 2: nouAlbum
+    
+    public void iniAlbum(String titol, String descripcio){
+        this.albumActiu = new Album(titol, descripcio); // create
+        this.mpVendibles.put(this.albumActiu.codi(), this.albumActiu); // add
+    }
+    
+    public void seleccionaFoto(Foto Foto){
+        this.albumActiu.afegeixFoto(Foto);
+        Foto.etiquetacioAlbum(this.albumActiu);
+        
+    }
+    
+    public void fiAlbum(){
+        this.albumActiu.fiAlbum();
+    }
+    
+    
     
 }

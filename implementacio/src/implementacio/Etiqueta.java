@@ -33,11 +33,17 @@ public class Etiqueta {
         return mpVendibles;
     }
     
-    
-    
     //Cas d'us 1 i 2: novesFotos i nouAlbum
-    public void publicaVendible(Vendible v){
-        this.mpVendibles.put(v.codi(), v); // add
+    public void publicaFoto(Vendible f){
+        this.mpVendibles.put(f.codi(), f); // add
+    }
+    
+    // Cas d'us 2: nouAlbum
+    
+    public void etiquetacioAlbum(Album a){
+        if (!this.mpVendibles.containsKey(a.codi()))
+            this.mpVendibles.put(a.codi(), a); // add
+        a.afegeixEtiqueta(this);
     }
     
 }
