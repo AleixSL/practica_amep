@@ -24,6 +24,12 @@ public class Foto extends Vendible {
         this.setPreponderant(in);
         in.publicaVendible(this);
     }
+
+    public int puntuacio() {
+        return puntuacio;
+    }
+    
+    
     
     //Cas d'us 1: novesFotos
     public void novaEtiqueta (Etiqueta et){
@@ -45,6 +51,14 @@ public class Foto extends Vendible {
             }
             
         }
+    }
+    
+    // Cas d'us 3: novaComanda
+    
+    public void actualitzaEstadistiques(int num){
+        this.puntuacio+=10;
+        //variacions
+        this.obtenirPreponderant().actualitzaEstadistiques(num);
     }
     
 }

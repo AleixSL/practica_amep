@@ -36,6 +36,10 @@ public class Vendible {
         return (Foto) this;
     }
     
+    public <Album extends Vendible> Album getAlbum() {
+        return (Album) this;
+    }
+    
     public Indret obtenirPreponderant() {
         return preponderant;
     }
@@ -64,6 +68,10 @@ public class Vendible {
 
     public String descripcio() {
         return this.descripcio;
+    }
+    
+    public void actualitzaEstadistiques(){
+        this.preponderant.incrementaPuntuacio(20);
     }
     
 }

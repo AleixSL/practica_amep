@@ -104,7 +104,60 @@ public class Implementacio {
         k.fiAlbum(); //ES3
         System.out.println(k);
     }
+    public static void novaComanda (K k, Scanner in){
+        System.out.println(GREEN +"Command accepted: novaComanda()"+GREEN);
+                    
+        System.out.println("Introdueix el teu nickname:");
 
+        String nickname = in.nextLine();
+
+        k.iniComanda(nickname);
+
+        System.out.println("Introduir foto(f) o album(a) (Enter to skip): ");
+        String res1 = in.nextLine();
+
+        while (!res1.isEmpty()){
+
+            if (res1.equals("f")) {
+                List <Foto> fotos = new ArrayList<>();
+                System.out.println("Fotos disponibles: {");
+                for (String name: k.mpVendibles.keySet()) {
+                    Vendible v = k.mpVendibles.get(name);
+                    if (v.getType()=="foto"){
+                        fotos.add(v.getFoto());
+                        System.out.println("codi: "+v.codi()+", descripcio: "+ v.descripcio());
+                    }
+                }   
+                System.out.println("}");
+                System.out.println("Introdueix un codi:");
+                String codi = in.nextLine();
+                System.out.println("Introdueix un numero de variacions:");
+                String num = in.nextLine();
+
+                k.inclouFoto(codi, Integer.parseInt(num));
+            } else if (res1.equals("a")) {
+                List <Album> albums = new ArrayList<>();
+                System.out.println("Albums disponibles: {");
+                for (String name: k.mpVendibles.keySet()) {
+                    Vendible v = k.mpVendibles.get(name);
+                    if (v.getType()=="album"){
+                        albums.add(v.getAlbum());
+                        System.out.println("codi: "+v.codi()+", descripcio: "+ v.descripcio());
+                    }
+                }   
+                System.out.println("}");
+
+                System.out.println("Introdueix un codi:");
+                String codi = in.nextLine();
+                k.inclouAlbum(codi);
+            }
+
+            System.out.println("Introduir foto(f) o album(a) (Enter to skip): ");
+            res1 = in.nextLine();
+        }
+
+        System.out.println(k);
+    }
     /**
      * @param args the command line arguments
      */
@@ -119,8 +172,11 @@ public class Implementacio {
                 "paisatge", "muntanya", "costa",
                 "gastronomia", "cultura", "viatges"
         };
+        String [] clients = {
+               "meren", "jesus", "aleix"
+        };
         
-        K k = new K(predefinides);
+        K k = new K(predefinides, clients);
         //cmd = "NOUALBUM";
         // Aquesta es la logica per executar els casos d'us
         while (!cmd.isEmpty()) {
@@ -136,15 +192,12 @@ public class Implementacio {
                     break;
                 case "NOVACOMANDA":
                     // Tractament
-                    System.out.println(GREEN +"Command accepted: novaComanda()"+GREEN);
+                    novaComanda(k, in);
                     break;
                 case "REINICIAPUNTS":
                     // Tractament
                     System.out.println(GREEN +"Command accepted: reiniciaPunts()"+GREEN);
                     break;
-                //case "\n":
-                  //System.out.println(RED + "Aquesta comanda es erronea" + RED);
-                    //break;
                 default:
                     // Validacio
                     System.out.println(RED + "Aquesta comanda es erronea" + RED);

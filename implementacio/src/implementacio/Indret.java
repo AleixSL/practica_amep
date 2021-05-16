@@ -39,6 +39,12 @@ public class Indret {
     public String nom() {
         return this.nom;
     }
+
+    public void incrementaPuntuacio(int puntuacio) {
+        this.puntuacio += puntuacio;
+    }
+    
+    
     
     //Cas d'us 1 i 2: novesFotos i nouAlbum
     
@@ -49,6 +55,12 @@ public class Indret {
     
     public void publicaVendible(Foto f) {
         this.mpVendibles.put(f.codi(), f);
+    }
+    
+    //Cas d'us 3: novaComanda
+    public void actualitzaEstadistiques(int num){
+        this.compres+=num;
+        this.puntuacio+=(10*num);
     }
     
     

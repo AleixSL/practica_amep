@@ -18,6 +18,7 @@ public class K {
     Indret indretActiu;
     Foto fotoActiva;
     Album albumActiu;
+    Comanda comandaActiva;
     
     // Repositoris
     Map <String, Vendible> mpVendibles; //Cataleg
@@ -26,7 +27,7 @@ public class K {
     Map <String, Client> mpClients;
     
     // Constructor
-    public K (String [] predefinides){
+    public K (String [] predefinides, String [] clients){
        
         this.mpVendibles = new HashMap<>();
         this.mpIndrets = new HashMap<>();
@@ -37,6 +38,12 @@ public class K {
             Etiqueta et = new Etiqueta(predefinida);
             this.mpEtiquetes.put(predefinida, et);
         }
+        
+        for (String client : clients) {
+            Client c = new Client(client);
+            this.mpClients.put(client, c);
+        }
+        
     }
 
     
@@ -49,8 +56,14 @@ public class K {
         String clients = "{\n"; 
         
         for (String name: mpVendibles.keySet()) {
-            String descripcio = mpVendibles.get(name).descripcio();
-            vendibles += "\tcodi: "+name+", descripcio: "+descripcio+"\n";
+            Vendible v = mpVendibles.get(name);
+            String descripcio = v.descripcio();
+            vendibles += "\tcodi: "+name+", descripcio: "+descripcio;
+            if (v.getType()=="foto") {
+                Foto f = v.getFoto();
+                vendibles+=", puntuacio: "+f.puntuacio()+"\n";
+            }
+                
         }
         
         for (String name: mpIndrets.keySet()) {
@@ -71,10 +84,15 @@ public class K {
             etiquetes += "\tnom: "+name+", vendibles: {"+ vendiblesEt +"}\n";
         }
         
-        //for (UUID name: mpVendibles.keySet()) {
-           // String descripcio = mpVendibles.get(name).descripcio();
-            //clients += "\tcodi: "+name+", descripcio: "+descripcio+"\n";
-        //}
+        for (String name: mpClients.keySet()) {
+            Client c = mpClients.get(name);
+            String comandes = "";
+            for (String coname: c.comandes().keySet()) {
+                Comanda co = c.comandes().get(coname);
+                comandes +="\n\t\t"+co.articles().toString();
+            }   
+            clients += "\tnom: "+name+", comandes: "+comandes+"\n";
+        }
         
         return  "Vendibles " + vendibles +"}\n" +
                 "Indrets "   + indrets   +"}\n" +
@@ -128,6 +146,34 @@ public class K {
     
     public void fiAlbum(){
         this.albumActiu.fiAlbum();
+    }
+    
+    
+    // Cas d'us 3: novaComanda
+    public void iniComanda(String nickname){
+        Client c = this.mpClients.get(nickname);
+        if (c!=null) this.comandaActiva = c.creaComanda();
+        
+    }
+    
+    public void inclouFoto(String codi, int num){
+        Vendible v = this.mpVendibles.get(codi);
+        if (v!=null) {
+            this.fotoActiva = v.getFoto();
+            this.comandaActiva.afegeixArticle(this.fotoActiva, num);
+            this.fotoActiva.actualitzaEstadistiques(num);
+        }
+        
+          
+    }
+    
+    public void inclouAlbum(String codi){
+        Vendible v = this.mpVendibles.get(codi);
+        if (v!=null) {
+
+            this.comandaActiva.afegeixArticle(v);
+            v.actualitzaEstadistiques();
+        }
     }
     
     
