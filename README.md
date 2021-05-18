@@ -1,4 +1,4 @@
-# practica_amep
+# Pràctica AMEP
 Implementació de la pràctica d'AMEP.
 
 ### Comandes per usar
@@ -8,7 +8,7 @@ Implementació de la pràctica d'AMEP.
  - novacomanda
  - reiniciapunts
 
-## Comanda novesfotos
+### Comanda novesfotos
 
  - Aquesta comanda serveix per a afegir fotos al sistema. Primer de tot hauràs d'introduir l'indret de la foto. 
    Tot seguit et demanarà l'any en que va ser presa i també una descripció. A continuació hauràs d'afegir les 
@@ -16,13 +16,13 @@ Implementació de la pràctica d'AMEP.
    Si no vols afegir més fotos de l'indret torna a prèmer enter, i si no vols afegir més fotos, torna a apretar
    l'enter.
 
-## Comanda noualbum
+### Comanda noualbum
 
   - Aquesta comanda serveix per a afegir àlbums al sistema. Primer de tot hauràs d'intoduir un títol i una 
     descripció. A continuació et mostrarà per pantalla les fotos disponibles i hauràs d'afegir-les escrivint
     els números que els hi corresponen. Quan hagis acabat d'introduir-li les fotos, prem enter.
 
-## Comanda novacomanda
+### Comanda novacomanda
 
   - Amb aquesta comanda podràs crear una comanda de fotos i àlbums. Primer de tot hauràs de ser client (només hi 
     ha jesus, aleix i meren). Després hauràs d'escollir si afegir una foto o un àlbum amb la tecla f o a respectivament. 
@@ -31,6 +31,6 @@ Implementació de la pràctica d'AMEP.
     per pantalla els codis dels àlbum disponibles, i n'hauràs de seleccionar un. Un cop acabats qualsevol d'aquests dos
     casos, et tornarà a preguntar si vols afegir una altra foto o àlbum. Si ja has acabat apreta enter per a sortir.
   
-## Comanda reiniciapunts
+### Comanda reiniciapunts
 
   - Amb aquesta comanda podràs reiniciar els punts de les fotos i els indrets.
