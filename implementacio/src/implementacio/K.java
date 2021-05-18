@@ -1,6 +1,7 @@
 package implementacio;
 import java.util.HashMap;
 import java.util.Map;
+import java.time.LocalDate;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,6 +20,7 @@ public class K {
     Foto fotoActiva;
     Album albumActiu;
     Comanda comandaActiva;
+    private LocalDate ultimReinici;
     
     // Repositoris
     Map <String, Vendible> mpVendibles; //Cataleg
@@ -43,7 +45,8 @@ public class K {
             Client c = new Client(client);
             this.mpClients.put(client, c);
         }
-        
+        this.ultimReinici = LocalDate.now();
+        // this.ultimReinici = this.ultimReinici.minusYears(5);
     }
 
     
@@ -177,19 +180,36 @@ public class K {
     }
     
     // Cas d'ús 4 reiniciaPunts
-    public void iniReinici() {
-        for (String name: mpVendibles.keySet()) {
-            Vendible v = mpVendibles.get(name);
-            if (v.getType()=="foto") {
-                Foto f = v.getFoto();
-                f.reiniciVendible();
+    public boolean iniReinici() {
+        boolean res = false;
+        if (ultimReinici()) {
+            for (String name: mpVendibles.keySet()) {
+                Vendible v = mpVendibles.get(name);
+                if (v.getType()=="foto") {
+                    Foto f = v.getFoto();
+                    f.reiniciVendible();
+                }
             }
+
+            for (String name: mpIndrets.keySet()) {
+                Indret in = mpIndrets.get(name);
+                in.reiniciIndret();
+            }
+            res = true;
         }
-        
-        for (String name: mpIndrets.keySet()) {
-            Indret in = mpIndrets.get(name);
-            in.reiniciIndret();
-        }
+        return res;
     }
+    
+    public boolean ultimReinici() {
+        boolean res = false;
+        LocalDate avui = LocalDate.now();
+        LocalDate ult = this.ultimReinici.plusYears(5);
+        if(avui.isEqual(ult) || avui.isAfter(ult)){
+            res = true;
+            this.ultimReinici = LocalDate.now();
+        }
+        return res;
+    }
+
     
 }

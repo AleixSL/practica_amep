@@ -158,6 +158,15 @@ public class Implementacio {
 
         System.out.println(k);
     }
+    
+    public static void reiniciaPunts(K k, Scanner in) {
+        System.out.println(GREEN +"Command accepted: reiniciaPunts()"+GREEN);
+        if(k.iniReinici()) {
+            System.out.println(GREEN +"S'han reiniciat els punts"+GREEN);
+            System.out.println(k);
+        }
+        else System.out.println(RED +"Encara no han passat 5 anys des de l'últim reinici!"+RED);
+    }
     /**
      * @param args the command line arguments
      */
@@ -198,9 +207,7 @@ public class Implementacio {
                     break;
                 case "REINICIAPUNTS":
                     // Tractament
-                    System.out.println(GREEN +"Command accepted: reiniciaPunts()"+GREEN);
-                    k.iniReinici();
-                    System.out.println(k);
+                    reiniciaPunts(k, in);
                     break;
                 default:
                     // Validacio
