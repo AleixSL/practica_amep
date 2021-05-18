@@ -163,9 +163,11 @@ public class Implementacio {
      */
     public static void main(String[] args) {
         
-        
+        System.out.println("Les comandes existents són les següents: "
+            + "\n\t novesfotos \n\t noualbum \n\t novacomanda \n\t reiniciapunts");
         Scanner in = new Scanner(System.in);
         System.out.println("Introdueix comanda (Enter to skip): ");
+        
         String cmd = in.nextLine().toUpperCase();
         String [] predefinides = {
                "personatge", "edifici", "cotxe",
@@ -197,10 +199,14 @@ public class Implementacio {
                 case "REINICIAPUNTS":
                     // Tractament
                     System.out.println(GREEN +"Command accepted: reiniciaPunts()"+GREEN);
+                    k.iniReinici();
+                    System.out.println(k);
                     break;
                 default:
                     // Validacio
                     System.out.println(RED + "Aquesta comanda es erronea" + RED);
+                    System.out.println("Les comandes existents són les següents: "
+                            + "\n\t novesfotos \n\t noualbum \n\t novacomanda \n\t reiniciapunts");
                     break;
             }
             

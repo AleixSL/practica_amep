@@ -61,4 +61,9 @@ public class Foto extends Vendible {
         this.obtenirPreponderant().actualitzaEstadistiques(num);
     }
     
+    // Cas d'ús 4: reiniciaPunts
+    public void reiniciVendible() {
+        this.puntuacio = 0;
+    }
+
 }

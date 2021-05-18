@@ -63,5 +63,8 @@ public class Indret {
         this.puntuacio+=(10*num);
     }
     
-    
+    // Cas d'ús 4: reiniciaPunts
+    public void reiniciIndret() {
+        this.puntuacio = 0;
+    }
 }
