@@ -1,5 +1,7 @@
 package implementacio;
 
+import java.util.Map;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +17,7 @@ public class Foto extends Vendible {
     // Propietats atributives
     private final int any;
     private int puntuacio;
+    private Map <String, Vendible> mpVariacions;
     
     
     public Foto (int any, String descripcio, Indret in){
