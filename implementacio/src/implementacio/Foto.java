@@ -1,6 +1,7 @@
 package implementacio;
 
 import java.util.Map;
+import org.json.simple.JSONObject;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,10 +15,13 @@ import java.util.Map;
  */
 public class Foto extends Vendible {
     
+    public static final String GREEN = "\u001B[42m";
+    
     // Propietats atributives
-    private final int any;
+    private int any;
     private int puntuacio;
     private Map <String, Vendible> mpVariacions;
+
     
     
     public Foto (int any, String descripcio, Indret in){
@@ -27,6 +31,7 @@ public class Foto extends Vendible {
         this.setPreponderant(in);
         in.publicaVendible(this);
     }
+
 
     public int puntuacio() {
         return puntuacio;

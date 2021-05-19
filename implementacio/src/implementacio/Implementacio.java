@@ -24,7 +24,6 @@ public class Implementacio {
         
         System.out.println("Introdueix un indret (Enter to skip):");
         String nom = in.nextLine();
-        System.out.println("nom=("+nom+")");
 
         while (!nom.isEmpty()){
 
@@ -172,22 +171,23 @@ public class Implementacio {
      */
     public static void main(String[] args) {
         
-        System.out.println("Les comandes existents són les següents: "
-            + "\n\t novesfotos \n\t noualbum \n\t novacomanda \n\t reiniciapunts");
-        Scanner in = new Scanner(System.in);
-        System.out.println("Introdueix comanda (Enter to skip): ");
-        
-        String cmd = in.nextLine().toUpperCase();
         String [] predefinides = {
                "personatge", "edifici", "cotxe",
                 "paisatge", "muntanya", "costa",
                 "gastronomia", "cultura", "viatges"
         };
         String [] clients = {
-               "meren", "jesus", "aleix"
+               "Meren", "Jesus", "Aleix"
         };
         
         K k = new K(predefinides, clients);
+        System.out.println("Les comandes existents són les següents: "
+            + "\n\t novesfotos \n\t noualbum \n\t novacomanda \n\t reiniciapunts");
+        Scanner in = new Scanner(System.in);
+        System.out.println("Introdueix comanda (Enter to skip): ");
+        
+        String cmd = in.nextLine().toUpperCase();
+
         //cmd = "NOUALBUM";
         // Aquesta es la logica per executar els casos d'us
         while (!cmd.isEmpty()) {
