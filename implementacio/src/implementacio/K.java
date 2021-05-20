@@ -21,6 +21,9 @@ public class K {
     Album albumActiu;
     Comanda comandaActiva;
     private LocalDate ultimReinici;
+    public static final String RED = "\u001B[41m";
+    public static final String GREEN = "\u001B[42m";
+    public static final String RESET = "\u001B[0m";
     
     // Repositoris
     Map <String, Vendible> mpVendibles; //Cataleg
@@ -46,7 +49,7 @@ public class K {
             this.mpClients.put(client, c);
         }
         this.ultimReinici = LocalDate.now();
-        // this.ultimReinici = this.ultimReinici.minusYears(5);
+        this.ultimReinici = this.ultimReinici.minusYears(5);
     }
 
     
@@ -64,9 +67,9 @@ public class K {
             vendibles += "\tcodi: "+name+", descripcio: "+descripcio;
             if (v.getType()=="foto") {
                 Foto f = v.getFoto();
-                vendibles+=", puntuacio: "+f.puntuacio()+"\n";
+                vendibles+=", puntuacio: "+f.puntuacio();
             }
-                
+            vendibles += "\n";
         }
         
         for (String name: mpIndrets.keySet()) {
@@ -154,8 +157,8 @@ public class K {
     
     // Cas d'us 3: novaComanda
     public void iniComanda(String nickname){
-        Client c = this.mpClients.get(nickname);
-        if (c!=null) this.comandaActiva = c.creaComanda();
+        Client c = this.mpClients.get(nickname); // find()
+        if (c!=null) this.comandaActiva = c.creaComanda(); // create()
         
     }
     
@@ -180,8 +183,7 @@ public class K {
     }
     
     // Cas d'ús 4 reiniciaPunts
-    public boolean iniReinici() {
-        boolean res = false;
+    public void iniReinici() {
         if (ultimReinici()) {
             for (String name: mpVendibles.keySet()) {
                 Vendible v = mpVendibles.get(name);
@@ -195,9 +197,9 @@ public class K {
                 Indret in = mpIndrets.get(name);
                 in.reiniciIndret();
             }
-            res = true;
+            System.out.println(GREEN +"S'han reiniciat els punts"+RESET);
         }
-        return res;
+        else System.out.println(RED +"Encara no han passat 5 anys des de l'últim reinici!"+RESET);
     }
     
     public boolean ultimReinici() {

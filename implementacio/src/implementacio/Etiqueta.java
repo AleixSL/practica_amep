@@ -2,7 +2,6 @@ package implementacio;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.json.simple.JSONObject;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,10 +16,10 @@ import org.json.simple.JSONObject;
 public class Etiqueta {
     
     public static final String GREEN = "\u001B[42m";
+    public static final String RESET = "\u001B[0m";
     
     // Repositori
     Map <String, Vendible> mpVendibles;
-    JSONObject json;
     
     // Propietats atributives
     private final String titol;
@@ -28,18 +27,7 @@ public class Etiqueta {
     public Etiqueta (String titol){
         this.titol = titol;
         this.mpVendibles = new HashMap <>();
-        this.json = new JSONObject();
-        this.createJSON();
-    }
-    
-    public void createJSON() {
-        this.json.put("vendibles", this.mpVendibles);
-        this.json.put("titol", this.titol);
-        System.out.println(GREEN+"Etiqueta creada: "+this.json.toJSONString()+GREEN);
-    }
-    
-    public JSONObject getJSON(){
-        return this.json;
+        System.out.println(GREEN+"Etiqueta creada: "+this.titol+RESET);
     }
     
     public String titol() {

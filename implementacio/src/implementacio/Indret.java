@@ -2,8 +2,6 @@ package implementacio;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.json.simple.JSONObject;
-
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,32 +16,19 @@ import org.json.simple.JSONObject;
 public class Indret {
     
     public static final String GREEN = "\u001B[42m";
+    public static final String RESET = "\u001B[0m";
     
     private Map <String, Vendible> mpVendibles;
     private int puntuacio;
     private int compres;
     private final String nom;
-    JSONObject json;
     
     public Indret(String nom){
         this.nom = nom;
         this.puntuacio = 0;
         this.compres = 0;
         this.mpVendibles = new HashMap <>();
-        this.json = new JSONObject();
-        this.createJSON();
-    }
-    
-    public void createJSON() {
-        this.json.put("nom", this.nom);
-        this.json.put("puntuacio", this.puntuacio);
-        this.json.put("compres", this.compres);
-        this.json.put("vendibles", this.mpVendibles);
-        System.out.println(GREEN+"Indret creat: "+this.json.toJSONString()+GREEN);
-    }
-    
-    public JSONObject getJSON(){
-        return this.json;
+        System.out.println(GREEN+"Indret creat: "+this.nom+RESET);
     }
 
     public int puntuacio() {
@@ -61,7 +46,6 @@ public class Indret {
     public void incrementaPuntuacio(int puntuacio) {
         this.puntuacio += puntuacio;
     }
-    
     
     
     //Cas d'us 1 i 2: novesFotos i nouAlbum

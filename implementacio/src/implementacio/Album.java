@@ -2,7 +2,6 @@ package implementacio;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.json.simple.JSONObject;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,6 +15,7 @@ import org.json.simple.JSONObject;
 public class Album extends Vendible {
 
     public static final String GREEN = "\u001B[42m";
+    public static final String RESET = "\u001B[0m";
 
     // Repositoris
     Map<String, Foto> mpFotos;

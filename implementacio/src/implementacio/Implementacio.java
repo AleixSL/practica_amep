@@ -17,18 +17,27 @@ public class Implementacio {
     
     public static final String RED = "\u001B[41m";
     public static final String GREEN = "\u001B[42m";
+    public static final String RESET = "\u001B[0m";
     
     public static void novesFotos(K k, Scanner in){
         
-        System.out.println(GREEN +"Command accepted: novesFotos()"+GREEN);
+        System.out.println(GREEN +"Command accepted: novesFotos()"+RESET);
         
         System.out.println("Introdueix un indret (Enter to skip):");
         String nom = in.nextLine();
 
         while (!nom.isEmpty()){
-
-            k.introduirIndret(nom); // ES1
-
+            /*try {
+                throw new Exception("holaaa");*/
+                k.introduirIndret(nom); // ES1
+            /*}
+            catch(Exception e) {
+                System.out.println(RED +"Indret no vàlid"+RESET);
+                System.out.println("Introdueix un indret (Enter to skip):");
+                nom = in.nextLine();
+                continue;
+            }*/
+            
             System.out.println("BUCLE: Introduint nova foto...");
             System.out.println("Introdueix un any (Enter to skip): ");
             String res1 = in.nextLine();
@@ -42,6 +51,13 @@ public class Implementacio {
 
                 k.introduirFoto(any, descripcio); //ES2
 
+                String etiquetes = "";
+                    for (String name: k.mpEtiquetes.keySet()) {
+
+                        etiquetes += "\t"+name+"\n";
+                    }
+                System.out.print("Etiquetes disponibles: \n" + etiquetes);
+                
                 System.out.println("Introdueix una etiqueta (Enter to skip): ");
                 String res2 = in.nextLine();
 
@@ -49,6 +65,7 @@ public class Implementacio {
                     String titol = res2;
                     k.introduirEtiqueta(titol);
 
+                    System.out.print("Etiquetes disponibles: \n" + etiquetes);
                     System.out.println("Introdueix una etiqueta (Enter to skip): ");
                     res2 = in.nextLine();
                 }
@@ -67,7 +84,7 @@ public class Implementacio {
     }  
     public static void nouAlbum(K k, Scanner in){
         
-        System.out.println(GREEN +"Command accepted: nouAlbum()"+GREEN);
+        System.out.println(GREEN +"Command accepted: nouAlbum()"+RESET);
         
         System.out.println("Introdueix un titol:");
         String titol = in.nextLine();
@@ -104,12 +121,11 @@ public class Implementacio {
         System.out.println(k);
     }
     public static void novaComanda (K k, Scanner in){
-        System.out.println(GREEN +"Command accepted: novaComanda()"+GREEN);
+        System.out.println(GREEN +"Command accepted: novaComanda()"+RESET);
                     
         System.out.println("Introdueix el teu nickname:");
 
         String nickname = in.nextLine();
-
         k.iniComanda(nickname);
 
         System.out.println("Introduir foto(f) o album(a) (Enter to skip): ");
@@ -159,12 +175,9 @@ public class Implementacio {
     }
     
     public static void reiniciaPunts(K k, Scanner in) {
-        System.out.println(GREEN +"Command accepted: reiniciaPunts()"+GREEN);
-        if(k.iniReinici()) {
-            System.out.println(GREEN +"S'han reiniciat els punts"+GREEN);
-            System.out.println(k);
-        }
-        else System.out.println(RED +"Encara no han passat 5 anys des de l'últim reinici!"+RED);
+        System.out.println(GREEN +"Command accepted: reiniciaPunts()"+RESET);        
+        k.iniReinici();
+        System.out.println(k);
     }
     /**
      * @param args the command line arguments
@@ -195,23 +208,43 @@ public class Implementacio {
             switch(cmd){
                 case "NOVESFOTOS":
                     // Tractament
-                    novesFotos(k, in);
+                    try {
+                        novesFotos(k, in);
+                    }
+                    catch (Exception e){
+                        System.out.println(RED +"No s'ha pogut finalitzar correctament la petició"+RESET);
+                    }
                     break;
                 case "NOUALBUM":
                     // Tractament
-                    nouAlbum(k, in);
+                    try {
+                        nouAlbum(k, in);
+                    }
+                    catch (Exception e){
+                        System.out.println(RED +"No s'ha pogut finalitzar correctament la petició"+RESET);
+                    }
                     break;
                 case "NOVACOMANDA":
                     // Tractament
-                    novaComanda(k, in);
+                    try {
+                        novaComanda(k, in);
+                    }
+                    catch (Exception e){
+                        System.out.println(RED +"No s'ha pogut finalitzar correctament la petició"+RESET);
+                    }
                     break;
                 case "REINICIAPUNTS":
                     // Tractament
-                    reiniciaPunts(k, in);
+                    try {
+                        reiniciaPunts(k, in);
+                    }
+                    catch (Exception e){
+                        System.out.println(RED +"No s'ha pogut finalitzar correctament la petició"+RESET);
+                    }
                     break;
                 default:
                     // Validacio
-                    System.out.println(RED + "Aquesta comanda es erronea" + RED);
+                    System.out.println(RED + "Aquesta comanda es erronea" + RESET);
                     System.out.println("Les comandes existents són les següents: "
                             + "\n\t novesfotos \n\t noualbum \n\t novacomanda \n\t reiniciapunts");
                     break;
